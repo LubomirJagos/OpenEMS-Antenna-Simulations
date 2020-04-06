@@ -1,0 +1,50 @@
+li:view-list-v1 {
+  ha:view.9 {
+    type = {layer}
+    title = {Failed to map layer for export - layer omitted}
+    description = {Margin}
+    data_type = plain
+  }
+  ha:view.10 {
+    type = {layer}
+    title = {Failed to map layer for export - layer omitted}
+    description = {B.CrtYd}
+    data_type = plain
+  }
+  ha:view.11 {
+    type = {layer}
+    title = {Failed to map layer for export - layer omitted}
+    description = {F.CrtYd}
+    data_type = plain
+  }
+  ha:view.12 {
+    type = {layer}
+    title = {Failed to map layer for export - layer omitted}
+    description = {Intern}
+    data_type = plain
+  }
+  ha:view.13 {
+    type = {layer}
+    title = {unmapped layer on data export}
+    description = {}
+    data_type = plain
+  }
+  ha:view.14 {
+    type = {layer}
+    title = {unmapped layer on data export}
+    description = {}
+    data_type = plain
+  }
+  ha:view.15 {
+    type = {layer}
+    title = {unmapped layer on data export}
+    description = {}
+    data_type = plain
+  }
+  ha:view.16 {
+    type = {layer}
+    title = {unmapped layer on data export}
+    description = {}
+    data_type = plain
+  }
+}

@@ -1,0 +1,166 @@
+li:view-list-v1 {
+  ha:view.27 {
+    type = {layer}
+    title = {Failed to map layer for export - layer omitted}
+    description = {B.Adhes}
+    data_type = plain
+  }
+  ha:view.28 {
+    type = {layer}
+    title = {Failed to map layer for export - layer omitted}
+    description = {F.Adhes}
+    data_type = plain
+  }
+  ha:view.29 {
+    type = {layer}
+    title = {Failed to map layer for export - layer omitted}
+    description = {Dwgs.User}
+    data_type = plain
+  }
+  ha:view.30 {
+    type = {layer}
+    title = {Failed to map layer for export - layer omitted}
+    description = {Cmts.User}
+    data_type = plain
+  }
+  ha:view.31 {
+    type = {layer}
+    title = {Failed to map layer for export - layer omitted}
+    description = {Eco1.User}
+    data_type = plain
+  }
+  ha:view.32 {
+    type = {layer}
+    title = {Failed to map layer for export - layer omitted}
+    description = {Eco2.User}
+    data_type = plain
+  }
+  ha:view.33 {
+    type = {layer}
+    title = {Failed to map layer for export - layer omitted}
+    description = {Margin}
+    data_type = plain
+  }
+  ha:view.34 {
+    type = {layer}
+    title = {Failed to map layer for export - layer omitted}
+    description = {B.CrtYd}
+    data_type = plain
+  }
+  ha:view.35 {
+    type = {layer}
+    title = {Failed to map layer for export - layer omitted}
+    description = {F.CrtYd}
+    data_type = plain
+  }
+  ha:view.36 {
+    type = {layer}
+    title = {Failed to map layer for export - layer omitted}
+    description = {B.Fab}
+    data_type = plain
+  }
+  ha:view.37 {
+    type = {layer}
+    title = {Failed to map layer for export - layer omitted}
+    description = {F.Fab}
+    data_type = plain
+  }
+  ha:view.38 {
+    type = {layer}
+    title = {Failed to map layer for export - layer omitted}
+    description = {Intern}
+    data_type = plain
+  }
+  ha:view.39 {
+    type = {poly-hole}
+    title = {can't export polygon with holes}
+    description = {}
+    li:bbox = {44.438626mm; 34.422688mm; 99.438626mm; 89.422689mm;}
+    li:objs.0 {
+      li:id {10550;}
+    }
+    data_type = plain
+  }
+  ha:view.40 {
+    type = {layer}
+    title = {unmapped layer on data export}
+    description = {}
+    data_type = plain
+  }
+  ha:view.41 {
+    type = {layer}
+    title = {unmapped layer on data export}
+    description = {}
+    data_type = plain
+  }
+  ha:view.42 {
+    type = {layer}
+    title = {unmapped layer on data export}
+    description = {}
+    data_type = plain
+  }
+  ha:view.43 {
+    type = {layer}
+    title = {unmapped layer on data export}
+    description = {}
+    data_type = plain
+  }
+  ha:view.44 {
+    type = {layer}
+    title = {unmapped layer on data export}
+    description = {}
+    data_type = plain
+  }
+  ha:view.45 {
+    type = {layer}
+    title = {unmapped layer on data export}
+    description = {}
+    data_type = plain
+  }
+  ha:view.46 {
+    type = {layer}
+    title = {unmapped layer on data export}
+    description = {}
+    data_type = plain
+  }
+  ha:view.47 {
+    type = {layer}
+    title = {unmapped layer on data export}
+    description = {}
+    data_type = plain
+  }
+  ha:view.48 {
+    type = {layer}
+    title = {unmapped layer on data export}
+    description = {}
+    data_type = plain
+  }
+  ha:view.49 {
+    type = {layer}
+    title = {unmapped layer on data export}
+    description = {}
+    data_type = plain
+  }
+  ha:view.50 {
+    type = {layer}
+    title = {unmapped layer on data export}
+    description = {}
+    data_type = plain
+  }
+  ha:view.51 {
+    type = {layer}
+    title = {unmapped layer on data export}
+    description = {}
+    data_type = plain
+  }
+  ha:view.52 {
+    type = {padstack-shape}
+    title = {Can not convert padstack to via}
+    description = {only round vias are supported}
+    li:bbox = {10.5975mm; 60.1175mm; 11.422501mm; 60.942501mm;}
+    li:objs.0 {
+      li:id {10566;}
+    }
+    data_type = plain
+  }
+}

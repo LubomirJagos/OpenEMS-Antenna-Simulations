@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<openEMS>
+  <FDTD NumberOfTimesteps="30000" endCriteria="1e-05" f_max="3000000000">
+    <Excitation Type="0" f0="0" fc="3000000000">
+    </Excitation>
+    <BoundaryCond xmin="MUR" xmax="MUR" ymin="MUR" ymax="MUR" zmin="MUR" zmax="MUR">
+    </BoundaryCond>
+  </FDTD>
+  <ContinuousStructure CoordSystem="0">
+      <RectilinearGrid DeltaUnit="0.001">
+          <XLines Qty="43">-82,-78,-74,-70,-66,-62,-58,-54,-50,-46,-42,-38,-34,-30,-25.77073070445,-21.5414614089,-18.078858519,-15.6055707405,-12.1429678506,-8.8214839253,-5.5,-1.23489206508667,3.03021586982666,7.29532380474,12.1429678506,15.6055707405,18.078858519,21.5414614089,25.77073070445,30,34,38,42,46,50,54,58,62,66,70,74,78,82</XLines>
+          <YLines Qty="44">-82,-78,-74,-70,-66,-62,-58,-54,-50,-46,-42,-38,-34,-30,-26.1669292595,-22.333858519,-19.8605707405,-16.3979678506,-12.0589839253,-7.72,-3.8,-1,1,3.8,7.72,12.0589839253,16.3979678506,19.8605707405,22.333858519,26.1669292595,30,34,38,42,46,50,54,58,62,66,70,74,78,82</YLines>
+          <ZLines Qty="37">-42.2905408,-38.5667232,-34.8429056,-31.119088,-27.3952704,-23.6714528,-19.9476352,-16.2238176,-12.5,-8.7761824,-7.53490986666667,-6.29363733333333,-5.0523648,-3.100832,-1.70688,-0.7112,0,0.508,1.016,1.524,2.2352,3.23088,4.624832,6.5763648,9.30851072,13.133515008,17.0890100053333,21.0445050026667,25,28.9554949973333,32.9109899946667,36.866484992,40.8219799893333,44.7774749866667,48.732969984,52.6884649813333,56.6439599786667</ZLines>
+      </RectilinearGrid>
+      <BackgroundMaterial Epsilon="1" Mue="1" Kappa="0" Sigma="0" />
+      <ParameterSet />
+      <Properties>
+          <Metal ID="0" Name="patch">
+              <FillColor R="214" G="126" B="45" a="255" />
+              <EdgeColor R="214" G="126" B="45" a="255" />
+              <Primitives>
+                  <Box Priority="10">
+                      <Transformation />
+                      <P1 X="-2.143000e+001" Y="-2.068500e+001" Z="1.524000e+000" />
+                      <P2 X="2.143000e+001" Y="2.068500e+001" Z="1.524000e+000" />
+                  </Box>
+              </Primitives>
+          </Metal>
+          <Metal ID="1" Name="gnd">
+              <FillColor R="220" G="142" B="102" a="255" />
+              <EdgeColor R="220" G="142" B="102" a="255" />
+              <Primitives>
+                  <Box Priority="10">
+                      <Transformation />
+                      <P1 X="-30" Y="-30" Z="0" />
+                      <P2 X="30" Y="30" Z="0" />
+                  </Box>
+              </Primitives>
+          </Metal>
+          <Material ID="2" Name="substrate" Isotropy="1">
+              <FillColor R="131" G="239" B="87" a="123" />
+              <EdgeColor R="131" G="239" B="87" a="123" />
+              <Primitives>
+                  <Box Priority="0">
+                      <Transformation />
+                      <P1 X="-30" Y="-30" Z="0" />
+                      <P2 X="30" Y="30" Z="1.524" />
+                  </Box>
+              </Primitives>
+              <Property Epsilon="3.380000e+000,1.000000e+000,1.000000e+000" Mue="1.000000e+000,1.000000e+000,1.000000e+000" Kappa="4.606928e-004,0.000000e+000,0.000000e+000" Sigma="0.000000e+000,0.000000e+000,0.000000e+000" Density="0.000000e+000" />
+              <Weight Epsilon="1.000000e+000,1.000000e+000,1.000000e+000" Mue="1.000000e+000,1.000000e+000,1.000000e+000" Kappa="1.000000e+000,1.000000e+000,1.000000e+000" Sigma="1.000000e+000,1.000000e+000,1.000000e+000" Density="1.000000e+000" />
+          </Material>
+          <LumpedElement ID="3" Name="port_resist_1" Direction="2" Caps="1" R="50" C="1.#QNAN0e+000" L="1.#QNAN0e+000">
+              <FillColor R="73" G="97" B="255" a="255" />
+              <EdgeColor R="73" G="97" B="255" a="255" />
+              <Primitives>
+                  <Box Priority="5">
+                      <Transformation />
+                      <P1 X="-5.6" Y="-1" Z="0" />
+                      <P2 X="-5.4" Y="1" Z="1.524" />
+                  </Box>
+              </Primitives>
+          </LumpedElement>
+          <Excitation ID="4" Name="port_excite_1" Number="0" Frequency="0.000000e+000" Delay="0.000000e+000" Type="0" Excite="-0.000000e+000,-0.000000e+000,-1.000000e+000" PropDir="0.000000e+000,0.000000e+000,0.000000e+000">
+              <FillColor R="105" G="143" B="97" a="255" />
+              <EdgeColor R="105" G="143" B="97" a="255" />
+              <Primitives>
+                  <Box Priority="5">
+                      <Transformation />
+                      <P1 X="-5.6" Y="-1" Z="0" />
+                      <P2 X="-5.4" Y="1" Z="1.524" />
+                  </Box>
+              </Primitives>
+              <Weight X="1.000000e+000" Y="1.000000e+000" Z="1.000000e+000" />
+          </Excitation>
+          <ProbeBox ID="5" Name="port_ut1" Number="0" Type="0" Weight="-1" StartTime="0" StopTime="0">
+              <FillColor R="205" G="209" B="30" a="255" />
+              <EdgeColor R="205" G="209" B="30" a="255" />
+              <Primitives>
+                  <Box Priority="5">
+                      <Transformation />
+                      <P1 X="-5.5" Y="0" Z="0" />
+                      <P2 X="-5.5" Y="0" Z="1.524" />
+                  </Box>
+              </Primitives>
+          </ProbeBox>
+          <ProbeBox ID="6" Name="port_it1" Number="0" Type="1" Weight="1" StartTime="0" StopTime="0">
+              <FillColor R="157" G="156" B="22" a="255" />
+              <EdgeColor R="157" G="156" B="22" a="255" />
+              <Primitives>
+                  <Box Priority="5">
+                      <Transformation />
+                      <P1 X="-5.6" Y="-1" Z="0.762" />
+                      <P2 X="-5.4" Y="1" Z="0.762" />
+                  </Box>
+              </Primitives>
+          </ProbeBox>
+      </Properties>
+  </ContinuousStructure>
+</openEMS>

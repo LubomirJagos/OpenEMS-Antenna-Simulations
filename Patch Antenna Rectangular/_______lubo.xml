@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<openEMS>
+  <FDTD NumberOfTimesteps="1000000000" endCriteria="1e-05" f_max="1000000000">
+    <Excitation Type="0" f0="0" fc="1000000000">
+    </Excitation>
+    <BoundaryCond xmin="MUR" xmax="MUR" ymin="MUR" ymax="MUR" zmin="MUR" zmax="MUR">
+    </BoundaryCond>
+  </FDTD>
+  <ContinuousStructure CoordSystem="0">
+    <Properties>
+      <Metal Name="COPPER_1">
+        <Primitives>
+          <Polygon Priority="1" Elevation="4.8" NormDir="2" CoordSystem="0">
+            <Vertex X1="55.88" X2="-48.895">
+            </Vertex>
+            <Vertex X1="55.88" X2="-57.785">
+            </Vertex>
+            <Vertex X1="25.4" X2="-57.785">
+            </Vertex>
+            <Vertex X1="25.4" X2="-48.895">
+            </Vertex>
+          </Polygon>
+          <Polygon Priority="3" Elevation="4.8" NormDir="2" CoordSystem="0">
+            <Vertex X1="40.775" X2="-51.435">
+            </Vertex>
+            <Vertex X1="40.7994717418524" X2="-51.5895084971875">
+            </Vertex>
+            <Vertex X1="40.8704915028125" X2="-51.7288926261462">
+            </Vertex>
+            <Vertex X1="40.9811073738538" X2="-51.8395084971875">
+            </Vertex>
+            <Vertex X1="41.1204915028125" X2="-51.9105282581476">
+            </Vertex>
+            <Vertex X1="41.275" X2="-51.935">
+            </Vertex>
+            <Vertex X1="41.4295084971875" X2="-51.9105282581476">
+            </Vertex>
+            <Vertex X1="41.5688926261462" X2="-51.8395084971875">
+            </Vertex>
+            <Vertex X1="41.6795084971875" X2="-51.7288926261462">
+            </Vertex>
+            <Vertex X1="41.7505282581476" X2="-51.5895084971875">
+            </Vertex>
+            <Vertex X1="41.775" X2="-51.435">
+            </Vertex>
+          </Polygon>
+          <Polygon Priority="3" Elevation="4.8" NormDir="2" CoordSystem="0">
+            <Vertex X1="41.775" X2="-51.435">
+            </Vertex>
+            <Vertex X1="41.7505282581476" X2="-51.2804915028125">
+            </Vertex>
+            <Vertex X1="41.6795084971875" X2="-51.1411073738538">
+            </Vertex>
+            <Vertex X1="41.5688926261462" X2="-51.0304915028125">
+            </Vertex>
+            <Vertex X1="41.4295084971875" X2="-50.9594717418524">
+            </Vertex>
+            <Vertex X1="41.275" X2="-50.935">
+            </Vertex>
+            <Vertex X1="41.1204915028125" X2="-50.9594717418524">
+            </Vertex>
+            <Vertex X1="40.9811073738538" X2="-51.0304915028125">
+            </Vertex>
+            <Vertex X1="40.8704915028125" X2="-51.1411073738538">
+            </Vertex>
+            <Vertex X1="40.7994717418524" X2="-51.2804915028125">
+            </Vertex>
+            <Vertex X1="40.775" X2="-51.435">
+            </Vertex>
+          </Polygon>
+          <Polygon Priority="3" Elevation="4.8" NormDir="2" CoordSystem="0">
+            <Vertex X1="40.775" X2="-51.435">
+            </Vertex>
+            <Vertex X1="40.775" X2="-51.435">
+            </Vertex>
+            <Vertex X1="41.775" X2="-51.435">
+            </Vertex>
+            <Vertex X1="41.775" X2="-51.435">
+            </Vertex>
+          </Polygon>
+        </Primitives>
+      </Metal>
+      <Metal Name="COPPER_3">
+        <Primitives>
+          <Polygon Priority="3" Elevation="3.2" NormDir="2" CoordSystem="0">
+            <Vertex X1="40.775" X2="-51.435">
+            </Vertex>
+            <Vertex X1="40.7994717418524" X2="-51.5895084971875">
+            </Vertex>
+            <Vertex X1="40.8704915028125" X2="-51.7288926261462">
+            </Vertex>
+            <Vertex X1="40.9811073738538" X2="-51.8395084971875">
+            </Vertex>
+            <Vertex X1="41.1204915028125" X2="-51.9105282581476">
+            </Vertex>
+            <Vertex X1="41.275" X2="-51.935">
+            </Vertex>
+            <Vertex X1="41.4295084971875" X2="-51.9105282581476">
+            </Vertex>
+            <Vertex X1="41.5688926261462" X2="-51.8395084971875">
+            </Vertex>
+            <Vertex X1="41.6795084971875" X2="-51.7288926261462">
+            </Vertex>
+            <Vertex X1="41.7505282581476" X2="-51.5895084971875">
+            </Vertex>
+            <Vertex X1="41.775" X2="-51.435">
+            </Vertex>
+          </Polygon>
+          <Polygon Priority="3" Elevation="3.2" NormDir="2" CoordSystem="0">
+            <Vertex X1="41.775" X2="-51.435">
+            </Vertex>
+            <Vertex X1="41.7505282581476" X2="-51.2804915028125">
+            </Vertex>
+            <Vertex X1="41.6795084971875" X2="-51.1411073738538">
+            </Vertex>
+            <Vertex X1="41.5688926261462" X2="-51.0304915028125">
+            </Vertex>
+            <Vertex X1="41.4295084971875" X2="-50.9594717418524">
+            </Vertex>
+            <Vertex X1="41.275" X2="-50.935">
+            </Vertex>
+            <Vertex X1="41.1204915028125" X2="-50.9594717418524">
+            </Vertex>
+            <Vertex X1="40.9811073738538" X2="-51.0304915028125">
+            </Vertex>
+            <Vertex X1="40.8704915028125" X2="-51.1411073738538">
+            </Vertex>
+            <Vertex X1="40.7994717418524" X2="-51.2804915028125">
+            </Vertex>
+            <Vertex X1="40.775" X2="-51.435">
+            </Vertex>
+          </Polygon>
+          <Polygon Priority="3" Elevation="3.2" NormDir="2" CoordSystem="0">
+            <Vertex X1="40.775" X2="-51.435">
+            </Vertex>
+            <Vertex X1="40.775" X2="-51.435">
+            </Vertex>
+            <Vertex X1="41.775" X2="-51.435">
+            </Vertex>
+            <Vertex X1="41.775" X2="-51.435">
+            </Vertex>
+          </Polygon>
+        </Primitives>
+      </Metal>
+      <Metal Name="COPPER_5">
+        <Primitives>
+          <Polygon Priority="3" Elevation="1.6" NormDir="2" CoordSystem="0">
+            <Vertex X1="40.775" X2="-51.435">
+            </Vertex>
+            <Vertex X1="40.7994717418524" X2="-51.5895084971875">
+            </Vertex>
+            <Vertex X1="40.8704915028125" X2="-51.7288926261462">
+            </Vertex>
+            <Vertex X1="40.9811073738538" X2="-51.8395084971875">
+            </Vertex>
+            <Vertex X1="41.1204915028125" X2="-51.9105282581476">
+            </Vertex>
+            <Vertex X1="41.275" X2="-51.935">
+            </Vertex>
+            <Vertex X1="41.4295084971875" X2="-51.9105282581476">
+            </Vertex>
+            <Vertex X1="41.5688926261462" X2="-51.8395084971875">
+            </Vertex>
+            <Vertex X1="41.6795084971875" X2="-51.7288926261462">
+            </Vertex>
+            <Vertex X1="41.7505282581476" X2="-51.5895084971875">
+            </Vertex>
+            <Vertex X1="41.775" X2="-51.435">
+            </Vertex>
+          </Polygon>
+          <Polygon Priority="3" Elevation="1.6" NormDir="2" CoordSystem="0">
+            <Vertex X1="41.775" X2="-51.435">
+            </Vertex>
+            <Vertex X1="41.7505282581476" X2="-51.2804915028125">
+            </Vertex>
+            <Vertex X1="41.6795084971875" X2="-51.1411073738538">
+            </Vertex>
+            <Vertex X1="41.5688926261462" X2="-51.0304915028125">
+            </Vertex>
+            <Vertex X1="41.4295084971875" X2="-50.9594717418524">
+            </Vertex>
+            <Vertex X1="41.275" X2="-50.935">
+            </Vertex>
+            <Vertex X1="41.1204915028125" X2="-50.9594717418524">
+            </Vertex>
+            <Vertex X1="40.9811073738538" X2="-51.0304915028125">
+            </Vertex>
+            <Vertex X1="40.8704915028125" X2="-51.1411073738538">
+            </Vertex>
+            <Vertex X1="40.7994717418524" X2="-51.2804915028125">
+            </Vertex>
+            <Vertex X1="40.775" X2="-51.435">
+            </Vertex>
+          </Polygon>
+          <Polygon Priority="3" Elevation="1.6" NormDir="2" CoordSystem="0">
+            <Vertex X1="40.775" X2="-51.435">
+            </Vertex>
+            <Vertex X1="40.775" X2="-51.435">
+            </Vertex>
+            <Vertex X1="41.775" X2="-51.435">
+            </Vertex>
+            <Vertex X1="41.775" X2="-51.435">
+            </Vertex>
+          </Polygon>
+        </Primitives>
+      </Metal>
+      <Metal Name="COPPER_7">
+        <Primitives>
+          <Polygon Priority="1" Elevation="0" NormDir="2" CoordSystem="0">
+            <Vertex X1="61.595" X2="-23.495">
+            </Vertex>
+            <Vertex X1="61.595" X2="-62.865">
+            </Vertex>
+            <Vertex X1="19.05" X2="-62.865">
+            </Vertex>
+            <Vertex X1="19.05" X2="-23.495">
+            </Vertex>
+            <Vertex X1="23.796" X2="-7.6098">
+            </Vertex>
+            <Vertex X1="26.336" X2="-7.6098">
+            </Vertex>
+            <Vertex X1="26.336" X2="-33.0098">
+            </Vertex>
+            <Vertex X1="23.796" X2="-35.5498">
+            </Vertex>
+            <Vertex X1="21.764" X2="-35.5498">
+            </Vertex>
+            <Vertex X1="19.224" X2="-33.0098">
+            </Vertex>
+          </Polygon>
+          <Polygon Priority="3" Elevation="0" NormDir="2" CoordSystem="0">
+            <Vertex X1="40.775" X2="-51.435">
+            </Vertex>
+            <Vertex X1="40.7994717418524" X2="-51.5895084971875">
+            </Vertex>
+            <Vertex X1="40.8704915028125" X2="-51.7288926261462">
+            </Vertex>
+            <Vertex X1="40.9811073738538" X2="-51.8395084971875">
+            </Vertex>
+            <Vertex X1="41.1204915028125" X2="-51.9105282581476">
+            </Vertex>
+            <Vertex X1="41.275" X2="-51.935">
+            </Vertex>
+            <Vertex X1="41.4295084971875" X2="-51.9105282581476">
+            </Vertex>
+            <Vertex X1="41.5688926261462" X2="-51.8395084971875">
+            </Vertex>
+            <Vertex X1="41.6795084971875" X2="-51.7288926261462">
+            </Vertex>
+            <Vertex X1="41.7505282581476" X2="-51.5895084971875">
+            </Vertex>
+            <Vertex X1="41.775" X2="-51.435">
+            </Vertex>
+          </Polygon>
+          <Polygon Priority="3" Elevation="0" NormDir="2" CoordSystem="0">
+            <Vertex X1="41.775" X2="-51.435">
+            </Vertex>
+            <Vertex X1="41.7505282581476" X2="-51.2804915028125">
+            </Vertex>
+            <Vertex X1="41.6795084971875" X2="-51.1411073738538">
+            </Vertex>
+            <Vertex X1="41.5688926261462" X2="-51.0304915028125">
+            </Vertex>
+            <Vertex X1="41.4295084971875" X2="-50.9594717418524">
+            </Vertex>
+            <Vertex X1="41.275" X2="-50.935">
+            </Vertex>
+            <Vertex X1="41.1204915028125" X2="-50.9594717418524">
+            </Vertex>
+            <Vertex X1="40.9811073738538" X2="-51.0304915028125">
+            </Vertex>
+            <Vertex X1="40.8704915028125" X2="-51.1411073738538">
+            </Vertex>
+            <Vertex X1="40.7994717418524" X2="-51.2804915028125">
+            </Vertex>
+            <Vertex X1="40.775" X2="-51.435">
+            </Vertex>
+          </Polygon>
+          <Polygon Priority="3" Elevation="0" NormDir="2" CoordSystem="0">
+            <Vertex X1="40.775" X2="-51.435">
+            </Vertex>
+            <Vertex X1="40.775" X2="-51.435">
+            </Vertex>
+            <Vertex X1="41.775" X2="-51.435">
+            </Vertex>
+            <Vertex X1="41.775" X2="-51.435">
+            </Vertex>
+          </Polygon>
+        </Primitives>
+      </Metal>
+      <Material Name="SUBSTRATE_2">
+        <Property Epsilon="3.38">
+        </Property>
+        <Primitives>
+          <LinPoly Priority="0" Elevation="3.2" Length="1.6" NormDir="2" CoordSystem="0">
+            <Vertex X1="0" X2="0">
+            </Vertex>
+            <Vertex X1="80" X2="0">
+            </Vertex>
+            <Vertex X1="80" X2="-80">
+            </Vertex>
+            <Vertex X1="0" X2="-80">
+            </Vertex>
+          </LinPoly>
+        </Primitives>
+      </Material>
+      <Material Name="SUBSTRATE_4">
+        <Property Epsilon="3.38">
+        </Property>
+        <Primitives>
+          <LinPoly Priority="0" Elevation="1.6" Length="1.6" NormDir="2" CoordSystem="0">
+            <Vertex X1="0" X2="0">
+            </Vertex>
+            <Vertex X1="80" X2="0">
+            </Vertex>
+            <Vertex X1="80" X2="-80">
+            </Vertex>
+            <Vertex X1="0" X2="-80">
+            </Vertex>
+          </LinPoly>
+        </Primitives>
+      </Material>
+      <Material Name="SUBSTRATE_6">
+        <Property Epsilon="3.38">
+        </Property>
+        <Primitives>
+          <LinPoly Priority="0" Elevation="0" Length="1.6" NormDir="2" CoordSystem="0">
+            <Vertex X1="0" X2="0">
+            </Vertex>
+            <Vertex X1="80" X2="0">
+            </Vertex>
+            <Vertex X1="80" X2="-80">
+            </Vertex>
+            <Vertex X1="0" X2="-80">
+            </Vertex>
+          </LinPoly>
+        </Primitives>
+      </Material>
+      <Material Name="AIR">
+        <Property Epsilon="1">
+        </Property>
+      </Material>
+    </Properties>
+    <RectilinearGrid DeltaUnit="0.001" CoordSystem="0">
+      <XLines>-19.8936,-17.4069,-14.9202,-12.4335,-9.9468,-7.4601,-4.9734,-2.4867,0,2.4867,4.9733,7.46,9.9467,12.4333,14.92,17.4067,19.8933,22.38,24.8667,25.6667,26.4471,27.2275,28.0079,28.7883,29.5687,30.3492,31.1296,31.91,32.6904,33.4708,34.2512,35.0317,35.8121,36.5925,37.3729,38.1533,38.9337,39.7142,40.4946,41.275,42.0716,42.8681,43.6647,44.4613,45.2579,46.0544,46.851,47.6476,48.4442,49.2407,50.0373,50.8339,51.6305,52.427,53.2236,54.0202,54.8168,55.6133,56.4133,58.772,61.1307,63.4893,65.848,68.2067,70.5653,72.924,75.2827,77.6413,80,82.3587,84.7174,87.0761,89.4348,91.7935,94.1522,96.5109,98.8696</XLines>
+      <YLines>-99.2728,-96.8637,-94.4546,-92.0455,-89.6364,-87.2273,-84.8182,-82.4091,-80,-77.5909,-75.1819,-72.7728,-70.3637,-67.9546,-65.5456,-63.1365,-60.7274,-58.3183,-57.5183,-56.7579,-55.9975,-55.2371,-54.4767,-53.7162,-52.9558,-52.1954,-51.435,-50.6772,-49.9194,-49.1617,-48.3617,-47.5617,-46.195,-44.2617,-41.7617,-39.3051,-36.8485,-34.392,-31.9354,-29.4788,-27.0222,-24.5657,-22.1091,-19.6525,-17.196,-14.7394,-12.2828,-9.8263,-7.3697,-4.9131,-2.4566,0,2.4566,4.9132,7.3698,9.8264,12.283,14.7396,17.1962,19.6528</YLines>
+      <ZLines>-8.6661,-7.9995,-7.3329,-6.6663,-5.9997,-5.3331,-4.6665,-3.9999,-3.3333,-2.6667,-2,-1.3333,-0.666700000000001,0,0.2667,0.5333,0.8,1.0667,1.3333,1.6,1.8667,2.1333,2.4,2.6667,2.9333,3.2,3.4667,3.7333,4,4.2667,4.5333,4.8,5.4667,6.1333,6.8,7.4667,8.1333,8.8,9.4667,10.1334,10.8001,11.4668,12.1335,12.8002,13.4669,14.1336</ZLines>
+    </RectilinearGrid>
+  </ContinuousStructure>
+</openEMS>

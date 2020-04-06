@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<openEMS>
+  <FDTD NumberOfTimesteps="60000" endCriteria="1e-05" f_max="6000000000">
+    <Excitation Type="0" f0="0" fc="6000000000">
+    </Excitation>
+    <BoundaryCond xmin="MUR" xmax="MUR" ymin="MUR" ymax="MUR" zmin="MUR" zmax="MUR">
+    </BoundaryCond>
+  </FDTD>
+  <ContinuousStructure CoordSystem="0">
+    <Properties>
+      <Metal Name="antenna">
+        <Primitives>
+          <PolyhedronReader Priority="10" FileName="C:\Users\H364387\Documents\FreeCAD\Patch Antenna 2\antenna.stl   " FileType="STL">
+            <Transformation>
+              <Scale Argument="1">
+              </Scale>
+            </Transformation>
+          </PolyhedronReader>
+        </Primitives>
+      </Metal>
+      <Material Name="substrate">
+        <Property Epsilon="3.66">
+        </Property>
+        <Primitives>
+          <PolyhedronReader Priority="10" FileName="C:\Users\H364387\Documents\FreeCAD\Patch Antenna 2\substrate.stl " FileType="STL">
+            <Transformation>
+              <Scale Argument="1">
+              </Scale>
+            </Transformation>
+          </PolyhedronReader>
+        </Primitives>
+      </Material>
+      <LumpedElement Name="port_resist_excitation" Direction="2" Caps="1" R="50">
+        <Primitives>
+          <Box Priority="999">
+            <P1 X="43" Y="-52" Z="1.535">
+            </P1>
+            <P2 X="47" Y="-51.5" Z="0.035">
+            </P2>
+          </Box>
+        </Primitives>
+      </LumpedElement>
+      <Excitation Name="port_excite_excitation.stl" Type="0" Excite="0,0,-1">
+        <Primitives>
+          <Box Priority="999">
+            <P1 X="43" Y="-52" Z="1.535">
+            </P1>
+            <P2 X="47" Y="-51.5" Z="0.035">
+            </P2>
+          </Box>
+        </Primitives>
+      </Excitation>
+      <ProbeBox Name="port_ut1" Type="0" Weight="1">
+        <Primitives>
+          <Box Priority="999">
+            <P1 X="45" Y="-51.75" Z="1.535">
+            </P1>
+            <P2 X="45" Y="-51.75" Z="0.035">
+            </P2>
+          </Box>
+        </Primitives>
+      </ProbeBox>
+      <ProbeBox Name="port_it1" Type="1" Weight="-1" NormDir="2">
+        <Primitives>
+          <Box Priority="999">
+            <P1 X="43" Y="-52" Z="0.785">
+            </P1>
+            <P2 X="47" Y="-51.5" Z="0.785">
+            </P2>
+          </Box>
+        </Primitives>
+      </ProbeBox>
+      <Metal Name="gnd">
+        <Primitives>
+          <PolyhedronReader Priority="10" FileName="C:\Users\H364387\Documents\FreeCAD\Patch Antenna 2\gnd.stl       " FileType="STL">
+            <Transformation>
+              <Scale Argument="1">
+              </Scale>
+            </Transformation>
+          </PolyhedronReader>
+        </Primitives>
+      </Metal>
+    </Properties>
+    <RectilinearGrid DeltaUnit="0.001" CoordSystem="0">
+      <XLines>0,1.111111,2.222222,3.333333,4.444444,5.555556,6.666667,7.777778,8.888889,10,10.70707,11.41414,12.12121,12.82828,13.53535,14.24242,14.94949,15.65657,16.36364,17.07071,17.77778,18.48485,19.19192,19.89899,20.60606,21.31313,22.0202,22.72727,23.43434,24.14141,24.84848,25.55556,26.26263,26.9697,27.67677,28.38384,29.09091,29.79798,30.50505,31.21212,31.91919,32.62626,33.33333,34.0404,34.74747,35.45455,36.16162,36.86869,37.57576,38.28283,38.9899,39.69697,40.40404,41.11111,41.81818,42.52525,43,43.23232,43.93939,44,44.64646,45,45.35354,46,46.06061,46.76768,47,47.47475,48.18182,48.88889,49.59596,50.30303,51.0101,51.71717,52.42424,53.13131,53.83838,54.54545,55.25253,55.9596,56.66667,57.37374,58.08081,58.78788,59.49495,60.20202,60.90909,61.61616,62.32323,63.0303,63.73737,64.44444,65.15152,65.85859,66.56566,67.27273,67.9798,68.68687,69.39394,70.10101,70.80808,71.51515,72.22222,72.92929,73.63636,74.34343,75.05051,75.75758,76.46465,77.17172,77.87879,78.58586,79.29293,80,82.22222,84.44444,86.66667,88.88889,91.11111,93.33333,95.55556,97.77778,100</XLines>
+      <YLines>-70,-68.8889,-67.7778,-66.6667,-65.5556,-64.4444,-63.3333,-62.2222,-61.1111,-60,-59.4949,-58.9899,-58.4848,-57.9798,-57.4747,-56.9697,-56.4646,-55.9596,-55.4545,-54.9495,-54.4444,-53.9394,-53.4343,-53.3333,-52.9293,-52.4242,-52,-51.9192,-51.8333,-51.6667,-51.5,-51.4141,-50.9091,-50.404,-49.899,-49.3939,-48.8889,-48.3838,-47.8788,-47.3737,-46.8687,-46.6667,-46.3636,-45.8586,-45.3535,-44.8485,-44.3434,-43.8384,-43.3333,-42.8283,-42.3232,-41.8182,-41.3131,-40.8081,-40.303,-40,-39.798,-39.2929,-38.7879,-38.2828,-37.7778,-37.2727,-36.7677,-36.2626,-35.7576,-35.2525,-34.7475,-34.2424,-33.7374,-33.3333,-33.2323,-32.7273,-32.2222,-31.7172,-31.2121,-30.7071,-30.202,-29.697,-29.1919,-28.6869,-28.1818,-27.6768,-27.1717,-26.6667,-26.6667,-26.1616,-25.6566,-25.1515,-24.6465,-24.1414,-23.6364,-23.1313,-22.6263,-22.1212,-21.6162,-21.1111,-20.6061,-20.101,-20,-19.596,-19.0909,-18.5859,-18.0808,-17.5758,-17.0707,-16.5657,-16.0606,-15.5556,-15.0505,-14.5455,-14.0404,-13.5354,-13.3333,-13.0303,-12.5253,-12.0202,-11.5152,-11.0101,-10.5051,-10,-6.66667,0</YLines>
+      <ZLines>-3,-2.2222,-1.4444,-0.66667,-0.035,0,0.11111,0.16667,0.33333,0.5,0.66667,0.785,0.83333,0.88889,1,1.1667,1.3333,1.5,1.535,1.6667,2.4444,3.2222,4</ZLines>
+    </RectilinearGrid>
+  </ContinuousStructure>
+</openEMS>

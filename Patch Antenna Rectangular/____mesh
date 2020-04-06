@@ -1,0 +1,19 @@
+ha:pcb-rnd-mesh-v1 {
+  dens_obj = 0.15mm
+  dens_gap = 0.5mm
+  min_space = 0.1mm
+  pml = 8
+  smooth = 1
+  hor = 1
+  ver = 1
+  noimpl = 0
+  air_top = 1
+  air_bot = 1
+  dens_air = 0.7mm
+  smoothz = 1
+  max_air = 4.0mm
+  def_subs_thick = 1.6mm
+  def_copper_thick = 0.0
+  li:boundary = {MUR;MUR;MUR;MUR;MUR;MUR;}
+  subslines = 5
+}

@@ -1,0 +1,19 @@
+ha:pcb-rnd-mesh-v1 {
+  dens_obj = 0.5mm
+  dens_gap = 0.75mm
+  min_space = 0.15mm
+  pml = 8
+  smooth = 1
+  hor = 1
+  ver = 1
+  noimpl = 0
+  air_top = 1
+  air_bot = 1
+  dens_air = 0.75mm
+  smoothz = 1
+  max_air = 3.0mm
+  def_subs_thick = 1.5mm
+  def_copper_thick = 0.07mm
+  li:boundary = {PML_8;PML_8;PML_8;PML_8;PML_8;PML_8;}
+  subslines = 3
+}

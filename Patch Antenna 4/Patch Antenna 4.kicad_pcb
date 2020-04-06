@@ -1,0 +1,50 @@
+(kicad_pcb (version 3) (host pcb-rnd "(2.2.0-rc2 non-svn)")
+  (general
+  )
+
+  (page A4)
+
+  (layers
+    (0 F.Cu signal)
+    (15 B.Cu signal)
+    (18 B.Paste user)
+    (19 F.Paste user)
+    (20 B.SilkS user)
+    (21 F.SilkS user)
+    (22 B.Mask user)
+    (23 F.Mask user)
+    (28 Edge.Cuts user)
+  )
+
+  (setup
+    (via_drill 0.635)
+  )
+
+  (net 0 "")
+
+  (zone (net 0) (net_name "") (layer F.Cu) (tstamp 478E3FC8) (hatch edge 0.508)
+    (connect_pads no (clearance 0.508))
+    (min_thickness 0.4826)
+    (fill (arc_segments 32) (thermal_gap 0.508) (thermal_bridge_width 0.508))
+    (polygon
+      (pts
+        (xy 28.240 61.610) (xy 63.240 61.610) (xy 63.240 29.610) (xy 28.240 29.610)
+      )
+    )
+  )
+  (zone (net 0) (net_name "") (layer B.Cu) (tstamp 478E3FC8) (hatch edge 0.508)
+    (connect_pads no (clearance 0.508))
+    (min_thickness 0.4826)
+    (fill (arc_segments 32) (thermal_gap 0.508) (thermal_bridge_width 0.508))
+    (polygon
+      (pts
+        (xy 13.970 14.605) (xy 79.375 14.605) (xy 79.375 77.470) (xy 13.970 77.470)
+      )
+    )
+  )
+  (via (at 45.740 61.610) (size 0.800) (layers F.Cu B.Cu))
+  (gr_line (start 0.000 0.000) (end 90.000 0.000) (layer Edge.Cuts) (width 0.254))
+  (gr_line (start 90.000 0.000) (end 90.000 90.000) (layer Edge.Cuts) (width 0.254))
+  (gr_line (start 90.000 90.000) (end 0.000 90.000) (layer Edge.Cuts) (width 0.254))
+  (gr_line (start 0.000 90.000) (end 0.000 0.000) (layer Edge.Cuts) (width 0.254))
+)

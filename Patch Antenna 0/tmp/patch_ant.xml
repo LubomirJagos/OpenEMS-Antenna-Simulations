@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<openEMS>
+  <FDTD NumberOfTimesteps="30000" endCriteria="1e-05" f_max="3000000000">
+    <Excitation Type="0" f0="0" fc="3000000000">
+    </Excitation>
+    <BoundaryCond xmin="MUR" xmax="MUR" ymin="MUR" ymax="MUR" zmin="MUR" zmax="MUR">
+    </BoundaryCond>
+  </FDTD>
+  <ContinuousStructure CoordSystem="0">
+    <Properties>
+      <Metal Name="patch">
+        <Primitives>
+          <Box Priority="10">
+            <P1 X="-16.43" Y="-20.685" Z="1.524">
+            </P1>
+            <P2 X="16.43" Y="20.685" Z="1.524">
+            </P2>
+          </Box>
+        </Primitives>
+      </Metal>
+      <Metal Name="gnd">
+        <Primitives>
+          <Box Priority="10">
+            <P1 X="-30" Y="-30" Z="0">
+            </P1>
+            <P2 X="30" Y="30" Z="0">
+            </P2>
+          </Box>
+        </Primitives>
+      </Metal>
+      <Material Name="substrate">
+        <Property Epsilon="3.38" Kappa="0.000460692755709001">
+        </Property>
+        <Primitives>
+          <Box Priority="0">
+            <P1 X="-30" Y="-30" Z="0">
+            </P1>
+            <P2 X="30" Y="30" Z="1.524">
+            </P2>
+          </Box>
+        </Primitives>
+      </Material>
+      <LumpedElement Name="port_resist_1" Direction="2" Caps="1" R="50">
+        <Primitives>
+          <Box Priority="5">
+            <P1 X="-5.6" Y="-1" Z="0">
+            </P1>
+            <P2 X="-5.4" Y="1" Z="1.524">
+            </P2>
+          </Box>
+        </Primitives>
+      </LumpedElement>
+      <Excitation Name="port_excite_1" Type="0" Excite="-0,-0,-1">
+        <Primitives>
+          <Box Priority="5">
+            <P1 X="-5.6" Y="-1" Z="0">
+            </P1>
+            <P2 X="-5.4" Y="1" Z="1.524">
+            </P2>
+          </Box>
+        </Primitives>
+      </Excitation>
+      <ProbeBox Name="port_ut1" Type="0" Weight="-1">
+        <Primitives>
+          <Box Priority="5">
+            <P1 X="-5.5" Y="0" Z="0">
+            </P1>
+            <P2 X="-5.5" Y="0" Z="1.524">
+            </P2>
+          </Box>
+        </Primitives>
+      </ProbeBox>
+      <ProbeBox Name="port_it1" Type="1" Weight="1" NormDir="2">
+        <Primitives>
+          <Box Priority="5">
+            <P1 X="-5.6" Y="-1" Z="0.762">
+            </P1>
+            <P2 X="-5.4" Y="1" Z="0.762">
+            </P2>
+          </Box>
+        </Primitives>
+      </ProbeBox>
+      <DumpBox Name="Ht_" DumpMode="2" DumpType="1">
+        <Primitives>
+          <Box Priority="0">
+            <P1 X="-32.86" Y="-41.37" Z="2.524">
+            </P1>
+            <P2 X="32.86" Y="41.37" Z="2.524">
+            </P2>
+          </Box>
+        </Primitives>
+      </DumpBox>
+      <DumpBox Name="nf2ff_E_xn" DumpMode="1" DumpType="0" FileType="1">
+        <Primitives>
+          <Box Priority="0">
+            <P1 X="-50" Y="-50" Z="-12.5">
+            </P1>
+            <P2 X="-50" Y="50" Z="12.5">
+            </P2>
+          </Box>
+        </Primitives>
+      </DumpBox>
+      <DumpBox Name="nf2ff_H_xn" DumpMode="1" DumpType="1" FileType="1">
+        <Primitives>
+          <Box Priority="0">
+            <P1 X="-50" Y="-50" Z="-12.5">
+            </P1>
+            <P2 X="-50" Y="50" Z="12.5">
+            </P2>
+          </Box>
+        </Primitives>
+      </DumpBox>
+      <DumpBox Name="nf2ff_E_xp" DumpMode="1" DumpType="0" FileType="1">
+        <Primitives>
+          <Box Priority="0">
+            <P1 X="50" Y="-50" Z="-12.5">
+            </P1>
+            <P2 X="50" Y="50" Z="12.5">
+            </P2>
+          </Box>
+        </Primitives>
+      </DumpBox>
+      <DumpBox Name="nf2ff_H_xp" DumpMode="1" DumpType="1" FileType="1">
+        <Primitives>
+          <Box Priority="0">
+            <P1 X="50" Y="-50" Z="-12.5">
+            </P1>
+            <P2 X="50" Y="50" Z="12.5">
+            </P2>
+          </Box>
+        </Primitives>
+      </DumpBox>
+      <DumpBox Name="nf2ff_E_yn" DumpMode="1" DumpType="0" FileType="1">
+        <Primitives>
+          <Box Priority="0">
+            <P1 X="-50" Y="-50" Z="-12.5">
+            </P1>
+            <P2 X="50" Y="-50" Z="12.5">
+            </P2>
+          </Box>
+        </Primitives>
+      </DumpBox>
+      <DumpBox Name="nf2ff_H_yn" DumpMode="1" DumpType="1" FileType="1">
+        <Primitives>
+          <Box Priority="0">
+            <P1 X="-50" Y="-50" Z="-12.5">
+            </P1>
+            <P2 X="50" Y="-50" Z="12.5">
+            </P2>
+          </Box>
+        </Primitives>
+      </DumpBox>
+      <DumpBox Name="nf2ff_E_yp" DumpMode="1" DumpType="0" FileType="1">
+        <Primitives>
+          <Box Priority="0">
+            <P1 X="-50" Y="50" Z="-12.5">
+            </P1>
+            <P2 X="50" Y="50" Z="12.5">
+            </P2>
+          </Box>
+        </Primitives>
+      </DumpBox>
+      <DumpBox Name="nf2ff_H_yp" DumpMode="1" DumpType="1" FileType="1">
+        <Primitives>
+          <Box Priority="0">
+            <P1 X="-50" Y="50" Z="-12.5">
+            </P1>
+            <P2 X="50" Y="50" Z="12.5">
+            </P2>
+          </Box>
+        </Primitives>
+      </DumpBox>
+      <DumpBox Name="nf2ff_E_zn" DumpMode="1" DumpType="0" FileType="1">
+        <Primitives>
+          <Box Priority="0">
+            <P1 X="-50" Y="-50" Z="-12.5">
+            </P1>
+            <P2 X="50" Y="50" Z="-12.5">
+            </P2>
+          </Box>
+        </Primitives>
+      </DumpBox>
+      <DumpBox Name="nf2ff_H_zn" DumpMode="1" DumpType="1" FileType="1">
+        <Primitives>
+          <Box Priority="0">
+            <P1 X="-50" Y="-50" Z="-12.5">
+            </P1>
+            <P2 X="50" Y="50" Z="-12.5">
+            </P2>
+          </Box>
+        </Primitives>
+      </DumpBox>
+      <DumpBox Name="nf2ff_E_zp" DumpMode="1" DumpType="0" FileType="1">
+        <Primitives>
+          <Box Priority="0">
+            <P1 X="-50" Y="-50" Z="12.5">
+            </P1>
+            <P2 X="50" Y="50" Z="12.5">
+            </P2>
+          </Box>
+        </Primitives>
+      </DumpBox>
+      <DumpBox Name="nf2ff_H_zp" DumpMode="1" DumpType="1" FileType="1">
+        <Primitives>
+          <Box Priority="0">
+            <P1 X="-50" Y="-50" Z="12.5">
+            </P1>
+            <P2 X="50" Y="50" Z="12.5">
+            </P2>
+          </Box>
+        </Primitives>
+      </DumpBox>
+    </Properties>
+    <RectilinearGrid DeltaUnit="0.001" CoordSystem="0">
+      <XLines>-82,-78,-74,-70,-66,-62,-58,-54,-50,-46,-42,-38,-34,-30,-25.77073070445,-21.5414614089,-18.078858519,-15.6055707405,-12.1429678506,-8.8214839253,-5.5,-1.23489206508667,3.03021586982666,7.29532380474,12.1429678506,15.6055707405,18.078858519,21.5414614089,25.77073070445,30,34,38,42,46,50,54,58,62,66,70,74,78,82</XLines>
+      <YLines>-82,-78,-74,-70,-66,-62,-58,-54,-50,-46,-42,-38,-34,-30,-26.1669292595,-22.333858519,-19.8605707405,-16.3979678506,-12.0589839253,-7.72,-3.8,-1,1,3.8,7.72,12.0589839253,16.3979678506,19.8605707405,22.333858519,26.1669292595,30,34,38,42,46,50,54,58,62,66,70,74,78,82</YLines>
+      <ZLines>-42.2905408,-38.5667232,-34.8429056,-31.119088,-27.3952704,-23.6714528,-19.9476352,-16.2238176,-12.5,-8.7761824,-7.53490986666667,-6.29363733333333,-5.0523648,-3.100832,-1.70688,-0.7112,0,0.508,1.016,1.524,2.2352,3.23088,4.624832,6.5763648,9.30851072,13.133515008,17.0890100053333,21.0445050026667,25,28.9554949973333,32.9109899946667,36.866484992,40.8219799893333,44.7774749866667,48.732969984,52.6884649813333,56.6439599786667</ZLines>
+    </RectilinearGrid>
+  </ContinuousStructure>
+</openEMS>

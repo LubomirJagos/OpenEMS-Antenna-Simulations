@@ -8,7 +8,7 @@ epsilon_substrate = 3.66;
 fmax = 6e9;
 fc = 6e9;
 f0 = 0;
-NumberOfTimesteps = 60000;
+NumberOfTimesteps = 600e3;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  INITIALIZATION
@@ -87,9 +87,9 @@ for k = 1:size(simFiles)
     xmlOutput = [xmlOutput '        </Primitives>' "\n"];
     xmlOutput = [xmlOutput '      </Metal>' "\n"];
   elseif strncmp(stlFile, 'gnd.stl', 4) == 1
-  xlines = [xlines linspace(0, minX, 10) linspace(minX, maxX, 220)];
-    ylines = [ylines linspace(0, minY, 10) linspace(minY, maxY, 220)];
-    zlines = [minZ zlines];
+    xlines = [xlines linspace(minX, maxX, 40)];
+    ylines = [ylines linspace(minY, maxY, 40)];
+    zlines = [zlines linspace(minZ, maxZ, 3)];
 
     %add stl object into xml file into openems model
     xmlOutput = [xmlOutput '      <Metal Name="' stlFileName '">' "\n"];
@@ -103,26 +103,27 @@ for k = 1:size(simFiles)
     xmlOutput = [xmlOutput '        </Primitives>' "\n"];
     xmlOutput = [xmlOutput '      </Metal>' "\n"];
   elseif strncmp(stlFile, 'air.stl', 4) == 1
-    xlines = [xlines linspace(max(xlines), maxX, 10)];
-    ylines = [linspace(minY, min(ylines), 10) ylines];
-    ylines = [ylines linspace(max(ylines), maxY)];
-    zlines = [zlines linspace(minZ, maxZ, 10)];
+    xlines = [xlines linspace(minX, maxX, 40)];
+    ylines = [ylines linspace(minY, maxY, 40)];
+    zlines = [zlines linspace(minZ, maxZ, 8];
 
     %add stl object into xml file into openems model
-    %xmlOutput = [xmlOutput '      <Material Name="' stlFileName '">' "\n"];
-    %xmlOutput = [xmlOutput '        <Property Epsilon="1" Mue="1" kappa="0">' "\n"];
-    %xmlOutput = [xmlOutput '        </Property>' "\n"];
-    %xmlOutput = [xmlOutput '        <Primitives>' "\n"];
-    %xmlOutput = [xmlOutput '          <PolyhedronReader Priority="10" FileName="' pwd() '\' stlFile '" FileType="STL">' "\n"];
-    %xmlOutput = [xmlOutput '            <Transformation>' "\n"];
-    %xmlOutput = [xmlOutput '              <Scale Argument="1">' "\n"];
-    %xmlOutput = [xmlOutput '              </Scale>' "\n"];
-    %xmlOutput = [xmlOutput '            </Transformation>' "\n"];
-    %xmlOutput = [xmlOutput '          </PolyhedronReader>' "\n"];
-    %xmlOutput = [xmlOutput '        </Primitives>' "\n"];
-    %xmlOutput = [xmlOutput '      </Material>' "\n"];
+    xmlOutput = [xmlOutput '      <Material Name="' stlFileName '">' "\n"];
+    xmlOutput = [xmlOutput '        <Property Epsilon="1" Mue="1" kappa="0">' "\n"];
+    xmlOutput = [xmlOutput '        </Property>' "\n"];
+    xmlOutput = [xmlOutput '        <Primitives>' "\n"];
+    xmlOutput = [xmlOutput '          <PolyhedronReader Priority="10" FileName="' pwd() '\' stlFile '" FileType="STL">' "\n"];
+    xmlOutput = [xmlOutput '            <Transformation>' "\n"];
+    xmlOutput = [xmlOutput '              <Scale Argument="1">' "\n"];
+    xmlOutput = [xmlOutput '              </Scale>' "\n"];
+    xmlOutput = [xmlOutput '            </Transformation>' "\n"];
+    xmlOutput = [xmlOutput '          </PolyhedronReader>' "\n"];
+    xmlOutput = [xmlOutput '        </Primitives>' "\n"];
+    xmlOutput = [xmlOutput '      </Material>' "\n"];
   elseif strncmp(stlFile, 'substrate.stl', 4) == 1
-    zlines = [zlines linspace(minZ, maxZ, 10)];
+    xlines = [xlines linspace(minX, maxX, 10)];
+    ylines = [ylines linspace(minY, maxY, 10)];
+    zlines = [zlines linspace(minZ, maxZ, 3)];
 
     %add stl object into xml file into openems model
     xmlOutput = [xmlOutput '      <Material Name="' stlFileName '">' "\n"];
@@ -138,7 +139,7 @@ for k = 1:size(simFiles)
     xmlOutput = [xmlOutput '        </Primitives>' "\n"];
     xmlOutput = [xmlOutput '      </Material>' "\n"];
   elseif strncmp(stlFile, 'excitation.stl', 4) == 1
-    xlines = [xlines linspace(minX, maxX, 5)];
+    xlines = [xlines linspace(minX, maxX, 10)];
     ylines = [ylines linspace(minY, maxY, 4)];
     zlines = [zlines (maxZ + minZ)/2];
     

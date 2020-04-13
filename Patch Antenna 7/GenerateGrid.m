@@ -3,13 +3,16 @@ addpath('C:\Users\H364387\Documents\Octave\STLread_for_Octave');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  CONSTANT
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+mkdir('tmp');
+outputFileName = './tmp/csxcad.xml';
+
 epsilon_substrate = 3.66;
 fmax = 8e9;
 %mue_substrate = 1; %not used
 fc = 8e9;
 f0 = 4e9;
-input1_resistance = 205;
-NumberOfTimesteps = 300e3;
+input1_resistance = 50;
+NumberOfTimesteps = 1000e3;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  INITIALIZATION
@@ -20,6 +23,8 @@ NumberOfTimesteps = 300e3;
 %[vertices, faces, c] = stlread('gnd.stl');
 %[vertices, faces, c] = stlread('substrate.stl');
 %[vertices, faces, c] = stlread('air.stl');
+
+coords = {};  %structure to store XYZ coordination of each structure in model
 
 simFiles = [
   "antenna.stl",
@@ -103,7 +108,14 @@ for k = 1:size(simFiles)
     xmlOutput = [xmlOutput '          </PolyhedronReader>' "\n"];
     xmlOutput = [xmlOutput '        </Primitives>' "\n"];
     xmlOutput = [xmlOutput '      </Metal>' "\n"];
-  elseif strncmp(stlFile, 'air.stl', 4) == 1
+  elseif strncmp(stlFile, 'air.stl', 4) == 1    
+    coords.air.minX = minX;
+    coords.air.maxX = maxX;
+    coords.air.minY = minY;
+    coords.air.maxY = maxY;
+    coords.air.minZ = minZ;
+    coords.air.maxZ = maxZ;
+
     xlines = [xlines linspace(minX, maxX, 40)];
     ylines = [ylines linspace(minY, maxY, 40)];
     zlines = [zlines linspace(minZ, maxZ, 8)];
@@ -122,6 +134,13 @@ for k = 1:size(simFiles)
     xmlOutput = [xmlOutput '        </Primitives>' "\n"];
     xmlOutput = [xmlOutput '      </Material>' "\n"];
   elseif strncmp(stlFile, 'substrate.stl', 4) == 1
+    coords.substrate.minX = minX;
+    coords.substrate.maxX = maxX;
+    coords.substrate.minY = minY;
+    coords.substrate.maxY = maxY;
+    coords.substrate.minZ = minZ;
+    coords.substrate.maxZ = maxZ;
+
     xlines = [xlines linspace(minX, maxX, 10)];
     ylines = [ylines linspace(minY, maxY, 10)];
     zlines = [zlines linspace(minZ, maxZ, 3)];
@@ -191,13 +210,189 @@ for k = 1:size(simFiles)
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Write DUMP BOX AROUND ANTENNA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%probe for patch
+coords.Hplate.minX = coords.substrate.minX;
+coords.Hplate.maxX = coords.substrate.maxX;
+coords.Hplate.minY = coords.substrate.minY;
+coords.Hplate.maxY = coords.substrate.maxY;
+coords.Hplate.minZ = coords.substrate.maxZ + 1.0;   %plate is one dimensional on same level, no box
+coords.Hplate.maxZ = coords.substrate.maxZ + 1.0;
+
+%electric and magnetic box
+coords.Hbox.minX = (coords.substrate.minX + coords.air.minX) / 2;
+coords.Hbox.maxX = (coords.substrate.maxX + coords.air.maxX) / 2;
+coords.Hbox.minY = (coords.substrate.minY + coords.air.minY) / 2;
+coords.Hbox.maxY = (coords.substrate.maxY + coords.air.maxY) / 2;
+coords.Hbox.minZ = (coords.substrate.minZ + coords.air.minZ) / 2;
+coords.Hbox.maxZ = (coords.substrate.maxZ + coords.air.maxZ) / 2;
+
+coords.Ebox.minX = (coords.substrate.minX + coords.air.minX) / 2;
+coords.Ebox.maxX = (coords.substrate.maxX + coords.air.maxX) / 2;
+coords.Ebox.minY = (coords.substrate.minY + coords.air.minY) / 2;
+coords.Ebox.maxY = (coords.substrate.maxY + coords.air.maxY) / 2;
+coords.Ebox.minZ = (coords.substrate.minZ + coords.air.minZ) / 2;
+coords.Ebox.maxZ = (coords.substrate.maxZ + coords.air.maxZ) / 2;
+
+%xml string for openEMS
+xmlOutput = [xmlOutput '<DumpBox Name="Ht_" DumpMode="2" DumpType="1">' "\n"];
+xmlOutput = [xmlOutput '  <Primitives>' "\n"];
+xmlOutput = [xmlOutput '    <Box Priority="0">' "\n"];
+xmlOutput = [xmlOutput '      <P1 X="' num2str(coords.Hplate.minX) '" Y="' num2str(coords.Hplate.minY) '" Z="' num2str(coords.Hplate.minZ) '">' "\n"];
+xmlOutput = [xmlOutput '      </P1>' "\n"];
+xmlOutput = [xmlOutput '      <P2 X="' num2str(coords.Hplate.maxX) '" Y="' num2str(coords.Hplate.maxY) '" Z="' num2str(coords.Hplate.maxZ) '">' "\n"];
+xmlOutput = [xmlOutput '      </P2>' "\n"];
+xmlOutput = [xmlOutput '    </Box>' "\n"];
+xmlOutput = [xmlOutput '  </Primitives>' "\n"];
+xmlOutput = [xmlOutput '</DumpBox>' "\n"];
+
+xmlOutput = [xmlOutput '<DumpBox Name="nf2ff_E_xn" DumpMode="1" DumpType="0" FileType="1">' "\n"];
+xmlOutput = [xmlOutput '  <Primitives>' "\n"];
+xmlOutput = [xmlOutput '    <Box Priority="0">' "\n"];
+xmlOutput = [xmlOutput '      <P1 X="' num2str(coords.Ebox.minX) '" Y="' num2str(coords.Ebox.minY) '" Z="' num2str(coords.Ebox.minZ) '">' "\n"];
+xmlOutput = [xmlOutput '      </P1>' "\n"];
+xmlOutput = [xmlOutput '      <P2 X="' num2str(coords.Ebox.minX) '" Y="' num2str(coords.Ebox.maxY) '" Z="' num2str(coords.Ebox.maxZ) '">' "\n"];
+xmlOutput = [xmlOutput '      </P2>' "\n"];
+xmlOutput = [xmlOutput '    </Box>' "\n"];
+xmlOutput = [xmlOutput '  </Primitives>' "\n"];
+xmlOutput = [xmlOutput '</DumpBox>' "\n"];
+
+xmlOutput = [xmlOutput '<DumpBox Name="nf2ff_H_xn" DumpMode="1" DumpType="1" FileType="1">' "\n"];
+xmlOutput = [xmlOutput '  <Primitives>' "\n"];
+xmlOutput = [xmlOutput '    <Box Priority="0">' "\n"];
+xmlOutput = [xmlOutput '      <P1 X="' num2str(coords.Hbox.maxX) '" Y="' num2str(coords.Hbox.minY) '" Z="' num2str(coords.Hbox.minZ) '">' "\n"];
+xmlOutput = [xmlOutput '      </P1>' "\n"];
+xmlOutput = [xmlOutput '      <P2 X="' num2str(coords.Hbox.maxX) '" Y="' num2str(coords.Hbox.maxY) '" Z="' num2str(coords.Hbox.maxZ) '">' "\n"];
+xmlOutput = [xmlOutput '      </P2>' "\n"];
+xmlOutput = [xmlOutput '    </Box>' "\n"];
+xmlOutput = [xmlOutput '  </Primitives>' "\n"];
+xmlOutput = [xmlOutput '</DumpBox>' "\n"];
+
+xmlOutput = [xmlOutput '<DumpBox Name="nf2ff_E_xp" DumpMode="1" DumpType="0" FileType="1">' "\n"];
+xmlOutput = [xmlOutput '  <Primitives>' "\n"];
+xmlOutput = [xmlOutput '    <Box Priority="0">' "\n"];
+xmlOutput = [xmlOutput '      <P1 X="' num2str(coords.Hbox.maxX) '" Y="' num2str(coords.Hbox.minY) '" Z="' num2str(coords.Hbox.minZ) '">' "\n"];
+xmlOutput = [xmlOutput '      </P1>' "\n"];
+xmlOutput = [xmlOutput '      <P2 X="' num2str(coords.Hbox.maxX) '" Y="' num2str(coords.Hbox.maxY) '" Z="' num2str(coords.Hbox.maxZ) '">' "\n"];
+xmlOutput = [xmlOutput '      </P2>' "\n"];
+xmlOutput = [xmlOutput '    </Box>' "\n"];
+xmlOutput = [xmlOutput '  </Primitives>' "\n"];
+xmlOutput = [xmlOutput '</DumpBox>' "\n"];
+
+xmlOutput = [xmlOutput '<DumpBox Name="nf2ff_H_xp" DumpMode="1" DumpType="1" FileType="1">' "\n"];
+xmlOutput = [xmlOutput '  <Primitives>' "\n"];
+xmlOutput = [xmlOutput '    <Box Priority="0">' "\n"];
+xmlOutput = [xmlOutput '      <P1 X="' num2str(coords.Hbox.maxX) '" Y="' num2str(coords.Hbox.minY) '" Z="' num2str(coords.Hbox.minZ) '">' "\n"];
+xmlOutput = [xmlOutput '      </P1>' "\n"];
+xmlOutput = [xmlOutput '      <P2 X="' num2str(coords.Hbox.maxX) '" Y="' num2str(coords.Hbox.maxY) '" Z="' num2str(coords.Hbox.maxZ) '">' "\n"];
+xmlOutput = [xmlOutput '      </P2>' "\n"];
+xmlOutput = [xmlOutput '    </Box>' "\n"];
+xmlOutput = [xmlOutput '  </Primitives>' "\n"];
+xmlOutput = [xmlOutput '</DumpBox>' "\n"];
+
+xmlOutput = [xmlOutput '<DumpBox Name="nf2ff_E_yn" DumpMode="1" DumpType="0" FileType="1">' "\n"];
+xmlOutput = [xmlOutput '  <Primitives>' "\n"];
+xmlOutput = [xmlOutput '    <Box Priority="0">' "\n"];
+xmlOutput = [xmlOutput '      <P1 X="' num2str(coords.Hbox.minX) '" Y="' num2str(coords.Hbox.minY) '" Z="' num2str(coords.Hbox.minZ) '">' "\n"];
+xmlOutput = [xmlOutput '      </P1>' "\n"];
+xmlOutput = [xmlOutput '      <P2 X="' num2str(coords.Hbox.maxX) '" Y="' num2str(coords.Hbox.minY) '" Z="' num2str(coords.Hbox.maxZ) '">' "\n"];
+xmlOutput = [xmlOutput '      </P2>' "\n"];
+xmlOutput = [xmlOutput '    </Box>' "\n"];
+xmlOutput = [xmlOutput '  </Primitives>' "\n"];
+xmlOutput = [xmlOutput '</DumpBox>' "\n"];
+
+xmlOutput = [xmlOutput '<DumpBox Name="nf2ff_H_yn" DumpMode="1" DumpType="1" FileType="1">' "\n"];
+xmlOutput = [xmlOutput '  <Primitives>' "\n"];
+xmlOutput = [xmlOutput '    <Box Priority="0">' "\n"];
+xmlOutput = [xmlOutput '      <P1 X="' num2str(coords.Hbox.minX) '" Y="' num2str(coords.Hbox.minY) '" Z="' num2str(coords.Hbox.minZ) '">' "\n"];
+xmlOutput = [xmlOutput '      </P1>' "\n"];
+xmlOutput = [xmlOutput '      <P2 X="' num2str(coords.Hbox.maxX) '" Y="' num2str(coords.Hbox.minY) '" Z="' num2str(coords.Hbox.maxZ) '">' "\n"];
+xmlOutput = [xmlOutput '      </P2>' "\n"];
+xmlOutput = [xmlOutput '    </Box>' "\n"];
+xmlOutput = [xmlOutput '  </Primitives>' "\n"];
+xmlOutput = [xmlOutput '</DumpBox>' "\n"];
+
+xmlOutput = [xmlOutput '<DumpBox Name="nf2ff_E_yp" DumpMode="1" DumpType="0" FileType="1">' "\n"];
+xmlOutput = [xmlOutput '  <Primitives>' "\n"];
+xmlOutput = [xmlOutput '    <Box Priority="0">' "\n"];
+xmlOutput = [xmlOutput '      <P1 X="' num2str(coords.Hbox.minX) '" Y="' num2str(coords.Hbox.maxY) '" Z="' num2str(coords.Hbox.minZ) '">' "\n"];
+xmlOutput = [xmlOutput '      </P1>' "\n"];
+xmlOutput = [xmlOutput '      <P2 X="' num2str(coords.Hbox.maxX) '" Y="' num2str(coords.Hbox.maxY) '" Z="' num2str(coords.Hbox.maxZ) '">' "\n"];
+xmlOutput = [xmlOutput '      </P2>' "\n"];
+xmlOutput = [xmlOutput '    </Box>' "\n"];
+xmlOutput = [xmlOutput '  </Primitives>' "\n"];
+xmlOutput = [xmlOutput '</DumpBox>' "\n"];
+
+xmlOutput = [xmlOutput '<DumpBox Name="nf2ff_H_yp" DumpMode="1" DumpType="1" FileType="1">' "\n"];
+xmlOutput = [xmlOutput '  <Primitives>' "\n"];
+xmlOutput = [xmlOutput '    <Box Priority="0">' "\n"];
+xmlOutput = [xmlOutput '      <P1 X="' num2str(coords.Hbox.minX) '" Y="' num2str(coords.Hbox.maxY) '" Z="' num2str(coords.Hbox.minZ) '">' "\n"];
+xmlOutput = [xmlOutput '      </P1>' "\n"];
+xmlOutput = [xmlOutput '      <P2 X="' num2str(coords.Hbox.maxX) '" Y="' num2str(coords.Hbox.maxY) '" Z="' num2str(coords.Hbox.maxZ) '">' "\n"];
+xmlOutput = [xmlOutput '      </P2>' "\n"];
+xmlOutput = [xmlOutput '    </Box>' "\n"];
+xmlOutput = [xmlOutput '  </Primitives>' "\n"];
+xmlOutput = [xmlOutput '</DumpBox>' "\n"];
+
+xmlOutput = [xmlOutput '<DumpBox Name="nf2ff_E_zn" DumpMode="1" DumpType="0" FileType="1">' "\n"];
+xmlOutput = [xmlOutput '  <Primitives>' "\n"];
+xmlOutput = [xmlOutput '    <Box Priority="0">' "\n"];
+xmlOutput = [xmlOutput '      <P1 X="' num2str(coords.Hbox.minX) '" Y="' num2str(coords.Hbox.minY) '" Z="' num2str(coords.Hbox.minZ) '">' "\n"];
+xmlOutput = [xmlOutput '      </P1>' "\n"];
+xmlOutput = [xmlOutput '      <P2 X="' num2str(coords.Hbox.maxX) '" Y="' num2str(coords.Hbox.maxY) '" Z="' num2str(coords.Hbox.minZ) '">' "\n"];
+xmlOutput = [xmlOutput '      </P2>' "\n"];
+xmlOutput = [xmlOutput '    </Box>' "\n"];
+xmlOutput = [xmlOutput '  </Primitives>' "\n"];
+xmlOutput = [xmlOutput '</DumpBox>' "\n"];
+
+xmlOutput = [xmlOutput '<DumpBox Name="nf2ff_H_zn" DumpMode="1" DumpType="1" FileType="1">' "\n"];
+xmlOutput = [xmlOutput '  <Primitives>' "\n"];
+xmlOutput = [xmlOutput '    <Box Priority="0">' "\n"];
+xmlOutput = [xmlOutput '      <P1 X="' num2str(coords.Hbox.minX) '" Y="' num2str(coords.Hbox.minY) '" Z="' num2str(coords.Hbox.minZ) '">' "\n"];
+xmlOutput = [xmlOutput '      </P1>' "\n"];
+xmlOutput = [xmlOutput '      <P2 X="' num2str(coords.Hbox.maxX) '" Y="' num2str(coords.Hbox.maxY) '" Z="' num2str(coords.Hbox.minZ) '">' "\n"];
+xmlOutput = [xmlOutput '      </P2>' "\n"];
+xmlOutput = [xmlOutput '    </Box>' "\n"];
+xmlOutput = [xmlOutput '  </Primitives>' "\n"];
+xmlOutput = [xmlOutput '</DumpBox>' "\n"];
+
+xmlOutput = [xmlOutput '<DumpBox Name="nf2ff_E_zp" DumpMode="1" DumpType="0" FileType="1">' "\n"];
+xmlOutput = [xmlOutput '  <Primitives>' "\n"];
+xmlOutput = [xmlOutput '    <Box Priority="0">' "\n"];
+xmlOutput = [xmlOutput '      <P1 X="' num2str(coords.Hbox.minX) '" Y="' num2str(coords.Hbox.minY) '" Z="' num2str(coords.Hbox.maxZ) '">' "\n"];
+xmlOutput = [xmlOutput '      </P1>' "\n"];
+xmlOutput = [xmlOutput '      <P2 X="' num2str(coords.Hbox.maxX) '" Y="' num2str(coords.Hbox.maxY) '" Z="' num2str(coords.Hbox.maxZ) '">' "\n"];
+xmlOutput = [xmlOutput '      </P2>' "\n"];
+xmlOutput = [xmlOutput '    </Box>' "\n"];
+xmlOutput = [xmlOutput '  </Primitives>' "\n"];
+xmlOutput = [xmlOutput '</DumpBox>' "\n"];
+
+xmlOutput = [xmlOutput '<DumpBox Name="nf2ff_H_zp" DumpMode="1" DumpType="1" FileType="1">' "\n"];
+xmlOutput = [xmlOutput '  <Primitives>' "\n"];
+xmlOutput = [xmlOutput '    <Box Priority="0">' "\n"];
+xmlOutput = [xmlOutput '      <P1 X="' num2str(coords.Hbox.minX) '" Y="' num2str(coords.Hbox.minY) '" Z="' num2str(coords.Hbox.maxZ) '">' "\n"];
+xmlOutput = [xmlOutput '      </P1>' "\n"];
+xmlOutput = [xmlOutput '      <P2 X="' num2str(coords.Hbox.maxX) '" Y="' num2str(coords.Hbox.maxY) '" Z="' num2str(coords.Hbox.maxZ) '">' "\n"];
+xmlOutput = [xmlOutput '      </P2>' "\n"];
+xmlOutput = [xmlOutput '    </Box>' "\n"];
+xmlOutput = [xmlOutput '  </Primitives>' "\n"];
+xmlOutput = [xmlOutput '</DumpBox>' "\n"];
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  End of properties
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+xmlOutput = [xmlOutput '    </Properties>' "\n"];
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  Write grid into file
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 xlines = sort(unique(xlines));
 ylines = sort(unique(ylines));
 zlines = sort(unique(zlines));
 
-xmlOutput = [xmlOutput '    </Properties>' "\n"];
 xmlOutput = [xmlOutput '    <RectilinearGrid DeltaUnit="0.001" CoordSystem="0">' "\n"];
 xmlOutput = [xmlOutput '      <XLines>' regexprep(num2str(xlines),'\s*','\,') '</XLines>'  "\n"];
 xmlOutput = [xmlOutput '      <YLines>' regexprep(num2str(ylines),'\s*','\,') '</YLines>'  "\n"];
@@ -213,7 +408,7 @@ xmlOutput = [xmlOutput '</openEMS>' "\n"];
 
 display(xmlOutput);
 
-outFile = fopen('csxcad.xml', 'w');
+outFile = fopen(outputFileName, 'w');
 fwrite(outFile, xmlOutput);
 fclose(outFile);
-CSXGeomPlot('csxcad.xml');
+CSXGeomPlot(outputFileName);

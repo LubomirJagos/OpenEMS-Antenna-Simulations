@@ -53,12 +53,15 @@ if (postprocessing_only==0)
 end
 
 %% setup FDTD parameter & excitation function
-max_timesteps = 1e6;
+max_timesteps = 8e6;
 min_decrement = 1e-5; % equivalent to -50 dB
 f0 = 4e9; % center frequency
 fc = 8e9; % 20 dB corner frequency
 FDTD = InitFDTD( 'NrTS', max_timesteps, 'EndCriteria', min_decrement );
-FDTD = SetGaussExcite( FDTD, f0, fc );
+
+%FDTD = SetGaussExcite( FDTD, f0, fc );
+FDTD = SetSinusExcite(FDTD,f0); %LuboJ try sinus excitation
+
 BC = {'MUR' 'MUR' 'MUR' 'MUR' 'MUR' 'MUR'}; % boundary conditions
 if (use_pml>0)
     BC = {'PML_8' 'PML_8' 'PML_8' 'PML_8' 'PML_8' 'PML_8'}; % use pml instead of mur
@@ -140,12 +143,12 @@ CSX = DefineRectGrid( CSX, unit, mesh );
 
 %import antenna geometry
 CSX = AddMetal( CSX, 'patch' );
-CSX = ImportSTL(CSX, 'patch',10, 'C:/Users/Simon Gurfunkel/Documents/OpenEMS-Antenna-Simulations/Patch Antenna Circular Polarization 2/model/antenna.stl','Transform',{'Scale', 1});
+CSX = ImportSTL(CSX, 'patch',10, 'C:/Users/H364387/Documents/OpenEMS-Antenna-Simulations/Patch Antenna Circular Polarization 2/model/antenna.stl','Transform',{'Scale', 1});
 CSX = AddMaterial( CSX, 'substrate' );
 CSX = SetMaterialProperty( CSX, 'substrate', 'Epsilon', substrate.epsR, 'Kappa', substrate.kappa );
-CSX = ImportSTL(CSX, 'substrate',10, 'C:/Users/Simon Gurfunkel/Documents/OpenEMS-Antenna-Simulations/Patch Antenna Circular Polarization 2/model/substrate.stl','Transform',{'Scale', 1});
+CSX = ImportSTL(CSX, 'substrate',10, 'C:/Users/H364387/Documents/OpenEMS-Antenna-Simulations/Patch Antenna Circular Polarization 2/model/substrate.stl','Transform',{'Scale', 1});
 CSX = AddMetal( CSX, 'gnd' );
-CSX = ImportSTL(CSX, 'gnd',10, 'C:/Users/Simon Gurfunkel/Documents/OpenEMS-Antenna-Simulations/Patch Antenna Circular Polarization 2/model/gnd.stl','Transform',{'Scale', 1});
+CSX = ImportSTL(CSX, 'gnd',10, 'C:/Users/H364387/Documents/OpenEMS-Antenna-Simulations/Patch Antenna Circular Polarization 2/model/gnd.stl','Transform',{'Scale', 1});
 
 
 %% apply the excitation & resist as a current source
